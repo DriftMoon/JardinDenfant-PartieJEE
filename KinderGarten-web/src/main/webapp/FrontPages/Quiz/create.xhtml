@@ -1,0 +1,71 @@
+<ui:composition 
+	xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	template="/Front/Layout.xhtml">
+
+
+	<ui:define name="page"> quiz </ui:define>
+	<ui:define name="content">
+
+
+			<ui:define name="formations">
+                <li class="nav-item active">
+                		<h:form> <h:commandLink action="/FrontPages/Formation/Index?faces-redirect=true" styleClass="nav-link"> 
+                            <i class="material-icons">Formations</i>
+                            <p>Formations</p>
+                        </h:commandLink>
+                        </h:form> 
+                </li>
+   		 </ui:define>
+
+
+		<div class="row">
+			<div class="col-md-8">
+				<div class="card">
+					<div class="card-header card-header-primary">
+						<h4 class="card-title">create your quiz</h4>
+					
+					</div>
+					<h:form>
+					<div class="card-body">
+						
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label class="bmd-label-floating">Title</label>
+									<h:inputText value="#{quizBean.titre}" pt:placeholder="titre"  styleClass="form-control" />
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<div>
+									<label class="bmd-label-floating">id</label>
+									<h:inputText value="#{quizBean.ID}" pt:placeholder="id"  styleClass="form-control" />
+								</div>
+							</div>
+						</div>
+						
+						
+						<div class="row pull-left">
+						<h:commandButton action="#{quizBean.AddQuiz()}" value="Create" styleClass="btn btn-primary pull-right" />
+							<div class="clearfix"></div>
+						</div>
+						<div class="row pull-right">
+						<h:commandLink action="/Quiz/Index?faces-redirect=true" value="Back to List" styleClass="btn btn-warning" />
+							
+						</div> 
+						</div>
+						</h:form>
+					</div>
+				</div>
+			</div>
+
+
+	</ui:define>
+    	
+	
+</ui:composition>	

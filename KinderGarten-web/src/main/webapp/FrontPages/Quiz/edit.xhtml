@@ -1,0 +1,106 @@
+<ui:composition 
+	xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	template="/Front/Layout.xhtml">
+
+
+	<ui:define name="page"> Quiz </ui:define>
+	<ui:define name="content"> 
+	
+			<ui:define name="formations">
+                <li class="nav-item active">
+                		<h:form> <h:commandLink action="/Formation/Index?faces-redirect=true" styleClass="nav-link"> 
+                            <i class="material-icons">Formations</i>
+                            <p>Formations</p>
+                        </h:commandLink>
+                        </h:form> 
+                </li>
+   		 </ui:define>
+
+
+		<div class="row">
+			<div class="col-md-8">
+				<div class="card">
+					<div class="card-header card-header-primary">
+						<h4 class="card-title">Update your quiz</h4>
+					
+					</div>
+					<h:form>
+					<div class="card-body">
+						
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label class="bmd-label-floating">ID Question</label>
+									<h:inputText value="#{quizBean.questionID}" pt:placeholder="id"  styleClass="form-control" />
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<div>
+									<label class="bmd-label-floating">Question Text</label>
+									<h:inputText value="#{quizBean.text}" pt:placeholder="Question"  styleClass="form-control" />
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label class="bmd-label-floating">Option 1</label>
+									<h:inputText value="#{quizBean.opt1}" pt:placeholder="Option 1"  styleClass="form-control" />
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label class="bmd-label-floating">Option 2</label>
+									<h:inputText value="#{quizBean.opt2}" pt:placeholder="Option 2"  styleClass="form-control" />
+								</div>
+							</div>
+						</div>
+						
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label class="bmd-label-floating">Option 3</label>
+									<h:inputText value="#{quizBean.opt3}" pt:placeholder="Option 3"  styleClass="form-control" />
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label class="bmd-label-floating">Option 4</label>
+									<h:inputText value="#{quizBean.opt4}" pt:placeholder="Option 4"  styleClass="form-control" />
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label class="bmd-label-floating">correct option</label>
+									<h:inputText value="#{quizBean.correctOpt}" pt:placeholder="correct option"  styleClass="form-control" />
+								</div>
+							</div>
+						</div>
+						
+						<div class="row pull-right">
+						<h:commandButton  value="Update" action="#{quizBean.addQuestion()}" class="btn btn-primary btn-round" />
+							<div class="clearfix"></div>
+						</div>
+						
+						</div>
+						</h:form>
+					</div>
+				</div>
+			</div>
+
+	</ui:define>
+    	
+	
+</ui:composition>
