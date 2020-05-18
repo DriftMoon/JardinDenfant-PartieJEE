@@ -12,6 +12,7 @@ public class Question implements Serializable  {
 	private String Text;
 	private String Opt1;
 	private String Opt2;
+//salem
 	private String Opt3;
 	private String Opt4;
 	private int CorrectOpt;
