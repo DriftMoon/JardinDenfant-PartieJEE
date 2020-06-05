@@ -1,0 +1,92 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	template="/Front/Layout.xhtml">
+
+
+	<ui:param name="page_name" value="Create" />
+	<ui:define name="content">
+			<li class="nav-item active"><a
+					href="./Create.xhtml" >
+					<i class="material-icons">Create New</i>
+					<p>Events</p>
+				</a></li>
+				<h4> Event</h4>
+
+		<section class="event event-two padding-120">
+			<div class="container">
+				<div class="event-items">
+					<div class="row">
+
+
+						<c:forEach items="#{eventBean.event}" var="e" varStatus="metadata">
+
+							<div class="col-lg-4 col-sm-6 col-xs-12">
+
+								<div class="event-item">
+									<div class="event-image">
+
+
+										<h:graphicImage value="../resources/Uploads/#{e.image}" />
+
+										<div class="date">
+											<span><h:outputText value="#{e.date}">
+													<f:convertDateTime pattern="dd " />
+												</h:outputText></span>
+											<p>
+												<h:outputText value="#{e.date}">
+													<f:convertDateTime pattern="MMM  " />
+												</h:outputText>
+											</p>
+										</div>
+									</div>
+									<div class="event-content">
+										<h:form>
+											<h4>
+												<h:commandLink action="#{eventBean.Details(e)}">
+													<span><h:outputText value=" #{e.name}" /> </span>
+												</h:commandLink>
+
+
+											</h4>
+										</h:form>
+										<ul>
+											<li><span><i class="fa fa-clock-o"
+													aria-hidden="true"></i></span> <h:outputText value="#{e.deb}">
+													<f:convertDateTime pattern="HH:mm" />
+												</h:outputText> to <h:outputText value="#{e.fi}">
+													<f:convertDateTime pattern="HH:mm" />
+												</h:outputText></li>
+											<li><span><i class="fa fa-home"
+													aria-hidden="true"></i></span> <h:outputText value=" #{e.phone}" /></li>
+										</ul>
+
+										<p>
+											<h:outputText value=" #{e.description}" />
+										</p>
+										<h:form>
+											<h:commandLink action="#{eventBean.modifier(e)}">Update</h:commandLink>
+											<h:commandLink action="#{eventBean.supprimer(e)}">Delete</h:commandLink>
+
+										</h:form>
+									</div>
+
+
+								</div>
+							</div>
+
+
+
+						</c:forEach>
+					</div>
+
+				</div>
+			</div>
+		</section>
+	</ui:define>
+</ui:composition>

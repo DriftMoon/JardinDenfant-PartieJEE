@@ -1,0 +1,56 @@
+<ui:composition 
+	xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	template="/Front/Layout.xhtml">
+
+
+	<ui:define name="page"> Quiz </ui:define>
+	<ui:define name="content">
+ <h3>Quiz Time</h3>
+		<h:form>
+			<h:commandButton action="/FrontPages/Quiz/create?faces-redirect=true" value="Create New" styleClass="btn btn-info"/>
+		</h:form>
+  <table class="table">  								
+			<h:form id="form">
+				<h:panelGroup>
+				
+			<h:dataTable value="#{quizBean.quizz}" var="e"
+				 class="table">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="id" />
+					</f:facet>
+					<h:outputText value="#{e.ID}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="titre" />
+					</f:facet>
+					<h:outputText value="#{e.titre}" />
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Action" />
+					</f:facet>
+					<h:commandButton action="#{quizBean.test(e)}"
+						value="Play" /> |
+					<h:commandButton action="#{quizBean.modifier(e)}"
+						value="Update" />						
+				</h:column>
+			</h:dataTable>
+		
+	</h:panelGroup>
+	
+</h:form>
+
+  </table> 
+
+
+	</ui:define>
+    	
+	
+</ui:composition>	

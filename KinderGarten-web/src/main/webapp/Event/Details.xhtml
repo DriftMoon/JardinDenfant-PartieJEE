@@ -1,0 +1,97 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	template="/Front/Layout.xhtml">
+
+
+	<ui:param name="page_name" value="Create" />
+	<ui:define name="content">
+
+		<section class="page-header section-notch">
+			<div class="overlay">
+				<div class="container">
+					<h3>Event Details Page</h3>
+					<ul>
+						<li><a href="./Index.xhtml">Home</a></li>
+						<li>-</li>
+						<li>Event Details</li>
+					</ul>
+				</div>
+				<!-- container -->
+			</div>
+			<!-- overlay -->
+		</section>
+		<!-- page header -->
+		<!-- Page Header End here -->
+		<!-- Blog Post Start here -->
+		<section class="singel-class event-single padding-120">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-8">
+						<div class="single-post">
+							<div class="post-image">
+
+
+								<h:graphicImage value="../resources/Uploads/#{eventBean.LO}" />
+								<div class="event-counter">
+									<div class="row">
+										<div class="col-md-6 col-xs-12">
+											<h4>The Event Will Start In</h4>
+										</div>
+										<div class="col-md-6 col-xs-12">
+											<ul id="countdown" class="countdown">
+												<li class="clock-item"><span class="count-number days"><h:outputText value=" #{eventBean.days}" /></span>
+												<p class="days_text count-text">Days</p></li>
+
+												<li class="clock-item"><span class="count-number hours"><h:outputText value=" #{eventBean.heure}" /></span>
+												<p class="hours_text count-text">Hours</p></li>
+
+												<li class="clock-item"><span
+													class="count-number minutes"><h:outputText value=" #{eventBean.minute}" /></span>
+												<p class="minutes_text count-text">Min</p></li>
+
+												<li class="clock-item"><span
+													class="count-number seconds"><h:outputText value=" #{eventBean.second}" /></span>
+												<p class="seconds_text count-text">Sec</p></li>
+											</ul>
+										</div>
+									</div>
+									<!-- row -->
+								</div>
+							</div>
+							<div class="post-content">
+								<h3>
+									<h:outputText value=" #{eventBean.name}" />
+								</h3>
+								<ul class="post-meta">
+									<li><span class="icon flaticon-signs"></span> <a href="#"><h:outputText
+												value=" #{eventBean.phone}" /></a></li>
+									<li><span class="icon flaticon-alarm-clock"></span> <a
+										href="#">Time:<h:outputText value="#{eventBean.deb}">
+												<f:convertDateTime pattern="HH:mm" />
+											</h:outputText> to <h:outputText value="#{eventBean.fi}">
+												<f:convertDateTime pattern="HH:mm" />
+											</h:outputText></a></li>
+								</ul>
+								<p>
+									<h:outputText value=" #{eventBean.description}" />
+								</p>
+							</div>
+						</div>
+						<!-- single post -->
+					</div>
+
+				</div>
+			</div>
+		</section>
+
+
+
+
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,119 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	template="/Front/Layout2.xhtml">
+
+
+	<ui:param name="page_name" value="Edit" />
+	<ui:define name="content">
+		<li class="nav-item active"><a href="./Index.xhtml"> <i
+				class="material-icons">Index</i>
+
+		</a></li>
+		<h:form enctype="multipart/form-data">
+			<div class="form-horizontal">
+				<h4>Edit Event</h4>
+				<hr />
+				<div class="form-group">
+					Name
+					<div class="col-md-10">
+						<h:inputText value="#{eventBean.name}" pt:placeholder="Name"
+							styleClass="form-control" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					Description
+					<div class="col-md-10">
+						<h:inputText value="#{eventBean.description}"
+							pt:placeholder="Description" styleClass="form-control" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					Phone
+					<div class="col-md-10">
+						<h:inputText value="#{eventBean.phone}" pt:placeholder="Phone"
+							styleClass="form-control" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					Date Event
+					<div class="col-md-10">
+
+						<p:calendar value="#{eventBean.date}"
+							pattern="MM/dd/yyyy HH:mm:ss" styleClass="form-control" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					Heure Debut
+					<div class="col-md-10">
+						<p:calendar value="#{eventBean.deb}" pattern="MM/dd/yyyy HH:mm:ss"
+							styleClass="form-control" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					Heure Fin
+					<div class="col-md-10">
+						<p:calendar value="#{eventBean.fi}" pattern="MM/dd/yyyy HH:mm:ss"
+							styleClass="form-control">
+
+						</p:calendar>
+					</div>
+				</div>
+
+				<div class="form-group">
+					Category
+					<h:selectOneMenu value="#{eventBean.category}">
+						<f:selectItem itemLabel="Music" itemValue="Music" />
+						<f:selectItem itemLabel="Educative" itemValue="Educative" />
+						<f:selectItem itemLabel="Sport" itemValue="Sport" />
+						<f:selectItem itemLabel="Workshops" itemValue="Workshops" />
+
+					</h:selectOneMenu>
+				</div>
+
+			</div>
+
+
+
+			<div class="form-group">
+
+
+				Picture
+
+
+
+				<div id="upload-button">
+					<h:inputFile value="#{eventBean.logo}">
+
+						<f:passThroughAttribute name="accept" value="image/png" />
+						<f:ajax listener="#{eventBean.doUpload()}" render="@form" />
+
+
+					</h:inputFile>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="col-md-offset-2 col-md-10">
+					<h:commandButton action="#{eventBean.PutKinder}" value="Edit Event"
+						styleClass="btn btn-primary pull-center" id="hsine" />
+				</div>
+			</div>
+		</h:form>
+
+
+
+
+
+
+	</ui:define>
+</ui:composition>
