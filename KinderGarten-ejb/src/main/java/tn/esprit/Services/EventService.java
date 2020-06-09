@@ -27,7 +27,7 @@ import tn.esprit.Interfaces.EventServiceRemote;
 @Stateful
 @LocalBean
 public class EventService implements EventServiceRemote {
-	public String GlobalEndPoint = "solutionweb220200607010601.azurewebsites.net/";
+	public String GlobalEndPoint = "solutionweb220200607010601.azurewebsites.net";
 	EntityManager em;
 
 	public List<User> GetAllUsersMail() {
