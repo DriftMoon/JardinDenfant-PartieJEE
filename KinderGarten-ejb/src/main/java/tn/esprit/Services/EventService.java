@@ -27,14 +27,14 @@ import tn.esprit.Interfaces.EventServiceRemote;
 @Stateful
 @LocalBean
 public class EventService implements EventServiceRemote {
-	public String GlobalEndPoint = "localhost:44389";
+	public String GlobalEndPoint = "solutionweb220200607010601.azurewebsites.net/";
 	EntityManager em;
 
 	public List<User> GetAllUsersMail() {
 		List<User> lasp = new ArrayList<User>();
 		Client client = ClientBuilder.newClient();
 
-		WebTarget web = client.target("http://" + GlobalEndPoint + "/api/UserApi");
+		WebTarget web = client.target("https://" + GlobalEndPoint + "/api/UserApi");
 
 		Response response = web.request().get();
 
@@ -61,7 +61,7 @@ public class EventService implements EventServiceRemote {
 		List<Event> lasp = new ArrayList<Event>();
 		Client client = ClientBuilder.newClient();
 
-		WebTarget web = client.target("http://" + GlobalEndPoint + "/api/EventApi");
+		WebTarget web = client.target("https://" + GlobalEndPoint + "/api/EventApi");
 
 		Response response = web.request().get();
 
@@ -103,7 +103,7 @@ public class EventService implements EventServiceRemote {
 		List<Event> lasp = new ArrayList<Event>();
 		Client client = ClientBuilder.newClient();
 		System.out.println("qrcode" + qrcode);
-		WebTarget web = client.target("http://" + GlobalEndPoint + "/api/EventApi/QrCode?id=" + qrcode);
+		WebTarget web = client.target("https://" + GlobalEndPoint + "/api/EventApi/QrCode?id=" + qrcode);
 
 		Response response = web.request().get();
 
@@ -144,7 +144,7 @@ public class EventService implements EventServiceRemote {
 	@Override
 	public void Delete(Event event) {
 		Client client = ClientBuilder.newClient();
-		WebTarget target = client.target("http://" + GlobalEndPoint + "/api/EventApi/Delete?id=" + event.getEventId());
+		WebTarget target = client.target("https://" + GlobalEndPoint + "/api/EventApi/Delete?id=" + event.getEventId());
 		WebTarget hello = target.path("");
 		Response response = hello.request(MediaType.APPLICATION_JSON_TYPE, MediaType.TEXT_PLAIN_TYPE).delete();
 
@@ -158,7 +158,7 @@ public class EventService implements EventServiceRemote {
 	@Override
 	public void Create(Event e) {
 		Client client = ClientBuilder.newClient();
-		WebTarget target = client.target("http://" + GlobalEndPoint + "/api/EventApi/Create");
+		WebTarget target = client.target("https://" + GlobalEndPoint + "/api/EventApi/Create");
 		WebTarget hello = target.path("");
 		Response response = hello.request().post(Entity.entity(e, MediaType.APPLICATION_JSON));
 
@@ -182,7 +182,7 @@ public class EventService implements EventServiceRemote {
 		km.setFin(e.getFin());
 
 		Client client = ClientBuilder.newClient();
-		WebTarget target = client.target("http://" + GlobalEndPoint + "/api/EventApi/Put?id=" + id);
+		WebTarget target = client.target("https://" + GlobalEndPoint + "/api/EventApi/Put?id=" + id);
 		Response response = target.request().put(Entity.entity(e, MediaType.APPLICATION_JSON));
 		System.out.println(response);
 	}
