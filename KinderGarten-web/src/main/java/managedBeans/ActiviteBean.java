@@ -1,9 +1,16 @@
 package managedBeans;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
+
+import org.primefaces.PrimeFaces;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -13,32 +20,73 @@ import tn.esprit.Services.ActiviteService;
 @ManagedBean
 public class ActiviteBean {
 	static int id ;
-	public int ActiviteID ;
-    public String Title ;
-    public String Description ;
-    public String Outils ;
-    public String Theme ;
-    public int AgeMin ;
-    public int AgeMax;
-    public int ClassSize ;
-    public int Duration ;
-    public String Location ;
-    public String Affiche ;
-    public String Document="" ;
-    public Date Start ;
-    public String Professor ;
-    public String UserId ;
-	
+	private int ActiviteID ;
+	private String Title ;
+	private String Description ;
+	private String Outils ;
+	private String Theme ;
+    private int AgeMin ;
+    private int AgeMax;
+    private int ClassSize ;
+    private int Duration ;
+    private String Location ;
+    private String Affiche ;
+    private String Document="" ;
+    private Date Start ;
+    private String Professor ;
+    private String UserId ;
+    private List<Activite> sortedActs;
     private List<Activite> Activite;
     ActiviteService fs = new ActiviteService() ;
-     
-    
+
     
     public List<Activite> getActivite() {
     	Activite=fs.GetAll();
 		return Activite;
 	}
     
+public String details(Activite e) throws IOException{
+		
+		this.setActiviteID(e.getActiviteID());
+		this.setTitle(e.getTitle());
+		this.setAffiche(e.getAffiche());
+		this.setTheme(e.getTheme());
+		this.setLocation(e.getLocation());
+		this.setStart(e.getStart());
+		this.setDescription(e.getDescription());
+		this.setAgeMax(e.getAgeMax());
+		this.setAgeMin(e.getAgeMin());
+		this.setClassSize(e.getClassSize());
+		this.setDuration(e.getDuration());
+		this.setOutils(e.getOutils());
+		this.setProfessor(e.getProfessor());		
+		this.setUserId(e.getUserId());
+		System.out.println(e.getActiviteID());
+		id=e.getActiviteID();
+		System.out.println(id);
+		return "Details.jsf";			
+	}
+public String details2(Activite e) throws IOException{
+	
+	this.setActiviteID(e.getActiviteID());
+	this.setTitle(e.getTitle());
+	this.setAffiche(e.getAffiche());
+	this.setTheme(e.getTheme());
+	this.setLocation(e.getLocation());
+	this.setStart(e.getStart());
+	this.setDescription(e.getDescription());
+	this.setAgeMax(e.getAgeMax());
+	this.setAgeMin(e.getAgeMin());
+	this.setClassSize(e.getClassSize());
+	this.setDuration(e.getDuration());
+	this.setOutils(e.getOutils());
+	this.setProfessor(e.getProfessor());		
+	this.setUserId(e.getUserId());
+	System.out.println(e.getActiviteID());
+	id=e.getActiviteID();
+	System.out.println(id);
+	return "../Activite/Details.jsf";			
+}
     
 public String modifier(Activite e) throws IOException{
 		
@@ -64,6 +112,20 @@ public String modifier(Activite e) throws IOException{
 
 public String MAJEvent(){
 	System.out.println(id);
+	if((AgeMin>AgeMax)||(AgeMax>11 && AgeMax<3)||(AgeMin>11 && AgeMin<3)) {
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
+		        FacesMessage.SEVERITY_ERROR, "Vérifier l'age min est l'age max", null));
+		return "edit.jsf";}
+	if(Duration>12 || Duration<1)
+	{
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
+		        FacesMessage.SEVERITY_ERROR, "Vérifier la durée : entre 1 et 12 mois!", null));
+		return "edit.jsf";}
+	if(ClassSize>50 || ClassSize<5)
+	{
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
+		        FacesMessage.SEVERITY_ERROR, "Vérifier la taille de la classe 5-50", null));
+		return "edit.jsf";}
 	fs.Update(id, new Activite(Title, Description, Outils, Theme, AgeMin, AgeMax, ClassSize, Duration, Location, Affiche, Document, Start, Professor, UserId));
 	Activite = fs.GetAll();
 	id=0;
@@ -72,6 +134,21 @@ public String MAJEvent(){
 
 
 public	String AddActivite() {
+	if((AgeMin>AgeMax)||(AgeMax>11 && AgeMax<3)||(AgeMin>11 && AgeMin<3)) {
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
+		        FacesMessage.SEVERITY_ERROR, "Vérifier l'age min est l'age max", null));
+		return "Create.jsf";}
+	if(Duration>12 || Duration<1)
+	{
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
+		        FacesMessage.SEVERITY_ERROR, "Vérifier la durée : entre 1 et 12 mois!", null));
+		return "Create.jsf";}
+	if(ClassSize>50 || ClassSize<5)
+	{
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
+		        FacesMessage.SEVERITY_ERROR, "Vérifier la taille de la classe 5-50", null));
+		return "Create.jsf";}
+	
 	fs.Create( new Activite(Title, Description, Outils, Theme, AgeMin, AgeMax, ClassSize, Duration, Location, Affiche, Document, Start, Professor, UserId));
 	return "Index.jsf";
 }
@@ -186,10 +263,17 @@ public String supprimer(Activite e){
 	public void setFs(ActiviteService fs) {
 		this.fs = fs;
 	}
-    
-    
-    
-    
+
+	public List<Activite> getSortedActs() {
+		return	this.getActivite().stream().sorted((o1, o2) -> o1.getStart().compareTo(o2.getStart())).limit(5)
+		.collect(Collectors.toList());		
+	}
+
+	public void setSortedActs(List<Activite> sortedActs) {
+		this.sortedActs = sortedActs;
+	}
+
+
     
 
 

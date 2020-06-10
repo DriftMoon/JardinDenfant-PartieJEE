@@ -1,0 +1,40 @@
+<ui:composition 
+	xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/Front/Layout.xhtml">
+	
+	<ui:define name="page"> Quiz </ui:define>
+	<ui:define name="content">
+	
+	<section class="gallery padding-120">
+      <div class="container">
+      
+          <div class="gallery-items">
+          <h:form id="form">
+          <c:forEach items="#{quizBean.quizz}" var="e" varStatus="metadata">
+            <div class="gallery-item branding packing">
+              <div class="gallery-image">
+                <img src="quiz1.jpg" alt="gallery image" class="img-responsive"/>
+                <div class="gallery-overlay"><div class="bg"></div></div>
+                <div class="gallery-content">
+                  <h4><h:commandLink action="#{quizBean.play(e)}"
+						value="Play" /></h4>
+				  
+                  <h4><h:outputText value="#{e.titre}"/></h4>
+                  <span>By: KidsAcademy</span>
+                </div>
+              </div>
+               </div>
+              </c:forEach>
+              </h:form>
+          </div>
+        </div>
+    </section>
+	</ui:define>
+    		
+</ui:composition>	

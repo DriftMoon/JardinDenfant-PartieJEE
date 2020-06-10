@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
 
 @ManagedBean
@@ -39,6 +40,18 @@ public class QuizBean {
 	//test methode tasna3 lquiz 
 	public	String test(Quiz e) {
 		this.ID=e.getID();
+		if(qqs.GetAll().stream().filter(q->q.getIDQuiz()==e.getID()).collect(Collectors.toList()).size()<2)
+		return modifier(e);
+		this.Titre=e.getTitre();
+		System.out.println("test: "+this.getID()+this.getTitre());
+		this.setQuizJson(qs.launchQuiz(qqs.GetAll().stream().filter(q->q.getIDQuiz()==e.getID()).collect(Collectors.toList())));
+		System.out.println("test:"+this.getQuizJson());
+		return "Quiz.jsf";
+	}
+	public	String play(Quiz e) {
+		this.ID=e.getID();
+		if(qqs.GetAll().stream().filter(q->q.getIDQuiz()==e.getID()).collect(Collectors.toList()).size()<2)
+		return "Error.jsf";
 		this.Titre=e.getTitre();
 		System.out.println("test: "+this.getID()+this.getTitre());
 		this.setQuizJson(qs.launchQuiz(qqs.GetAll().stream().filter(q->q.getIDQuiz()==e.getID()).collect(Collectors.toList())));
@@ -80,6 +93,10 @@ public class QuizBean {
 	public String  addQuestion()  {
 		System.out.println("qid:"+ qid);
 		System.out.println("text"+Text+" : "+this.getText());
+		
+		if(CorrectOpt>4 || CorrectOpt<1)
+		return "edit.jsf";		
+		CorrectOpt --;
 		qqs.Create(new Question(Text, Opt1, Opt2, Opt3, Opt4, CorrectOpt, qid));
 		//questions.add(new Question(QuestionID, Text, Opt1, Opt2, Opt3, Opt4, CorrectOpt, this.getID()));
 		questions = qqs.GetAll();

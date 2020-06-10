@@ -13,9 +13,9 @@
 
 			<ui:define name="formations">
                 <li class="nav-item active">
-                		<h:form> <h:commandLink action="/FrontPages/Formation/Index?faces-redirect=true" styleClass="nav-link"> 
-                            <i class="material-icons">Formations</i>
-                            <p>Formations</p>
+                		<h:form> <h:commandLink action="/FrontPages/Quiz/Index?faces-redirect=true" styleClass="nav-link"> 
+                            <i class="material-icons">Quiz</i>
+                            <p>Back</p>
                         </h:commandLink>
                         </h:form> 
                 </li>
@@ -36,18 +36,14 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<label class="bmd-label-floating">Title</label>
-									<h:inputText value="#{quizBean.titre}" pt:placeholder="titre"  styleClass="form-control" />
+									<h:inputText id="titre" value="#{quizBean.titre}" pt:placeholder="titre"  styleClass="form-control" required="true" 
+             						    requiredMessage="La saisie du titre est obligatoire !"/>
+             						      <h:message for="titre" styleClass="errorBlock" />
+  										  <br/>
 								</div>
 							</div>
 						</div>
-						<div class="row">
-							<div class="col-md-6">
-								<div>
-									<label class="bmd-label-floating">id</label>
-									<h:inputText value="#{quizBean.ID}" pt:placeholder="id"  styleClass="form-control" />
-								</div>
-							</div>
-						</div>
+					
 						
 						
 						<div class="row pull-left">

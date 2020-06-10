@@ -4,98 +4,60 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
 	template="/Front/Layout.xhtml">
 
 
 	<ui:define name="page"> Courses </ui:define>
 	<ui:define name="content">
-<h3>Courses</h3>
-		<h:form>
-			<h:commandButton action="/FrontPages/Activite/create?faces-redirect=true" value="Create New" styleClass="btn btn-info"/>
-		</h:form>
-  <table class="table">
-								
-			<h:form id="form">
-				<h:panelGroup>
-				
-			<h:dataTable value="#{activiteBean.activite}" var="e"
-				 class="table">
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Name" />
-					</f:facet>
-					<h:outputText value="#{e.title}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Description" />
-					</f:facet>
-					<h:outputText value="#{e.description}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Theme" />
-					</f:facet>
-					<h:outputText value="#{e.theme}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Location" />
-					</f:facet>
-					<h:outputText value="#{e.location}" />
-				</h:column>
-				
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Start Date" />
-					</f:facet>
-					<h:outputText value="#{e.start}" >
-					<f:convertDateTime pattern="dd-MM-yyyy hh:mm:ss"/> </h:outputText> 
-					 
-				</h:column>
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Age Max" />
-					</f:facet>
-					<h:outputText value="#{e.ageMax}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Age Min" />
-					</f:facet>
-					<h:outputText value="#{e.ageMin}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Class Size" />
-					</f:facet>
-					<h:outputText value="#{e.classSize}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Professor" />
-					</f:facet>
-					<h:outputText value="#{e.professor}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Action" />
-					</f:facet>
-					<h:commandButton action="#{activiteBean.supprimer(e)}"
-						value="Delete" /> |
-					<h:commandButton action="#{activiteBean.modifier(e)}"
-						value="Update" />						
-				</h:column>
-			</h:dataTable>
-		
-	</h:panelGroup>
 	
-</h:form>
-
-  </table> 
-
+			<section class="classes padding-120">
+            <div class="container">
+    	    <div class="row">
+    	    
+           <c:forEach items="#{activiteBean.activite}" var="e" varStatus="metadata">
+        	
+		            <div class="col-lg-4 col-sm-6 col-xs-12">
+		    <div class="class-item">
+		        <div class="image">
+ 			<img src="../../resources/Front/images/classes/class_01.jpg" alt="event image" class="img-responsive" ></img>	
+ 				        </div>
+		        <ul class="schedule">
+		            <li>
+		                <span>Class Size</span>
+		                <span><h:outputText value="#{e.classSize}" /></span>
+		            </li>
+		            <li>
+		                <span>Years Old</span>
+		                <span><h:outputText value="#{e.ageMin}" /> - <h:outputText value="#{e.ageMax}" /></span>
+		            </li>
+		            <li>
+		                <span>Tution Fee</span>
+		                <span>$1500</span>
+		            </li>
+		        </ul>
+		        <div class="content">
+		        
+		            <h4> <h:form><h:commandLink action="#{activiteBean.details(e)}" value="#{e.title}" /></h:form> </h4>
+		            
+		            <p><span>Class Start</span> : <h:outputText value="#{e.start}" > 
+					<f:convertDateTime pattern="dd-MM-yyyy"/> </h:outputText></p>
+		            <p><span>Theme </span><h:outputText value="#{e.theme}" /></p>
+		            
+		            <p><span>Outils </span> : <h:outputText value="#{e.outils}" /></p>
+		        </div>
+		        <div class="address">
+		            <p><span><i class="fa fa-home" aria-hidden="true"></i></span> <h:outputText value="#{e.location}" /></p>
+		        </div>
+		    </div><!-- class item -->
+		</div>
+	 </c:forEach>  
+	
+        </div>
+       </div>
+       </section>
 
 	</ui:define>
-    	
-	
+    		
 </ui:composition>	

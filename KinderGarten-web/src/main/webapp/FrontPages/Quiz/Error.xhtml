@@ -1,0 +1,45 @@
+
+<ui:composition 
+	xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	template="/Front/Layout.xhtml">
+	<ui:define name="page"> Quiz </ui:define>
+	<ui:define name="content">
+	
+		
+    <!-- Page Header Start here -->
+    <section class="page-header section-notch">
+      <div class="overlay">
+        <div class="container">
+          <h3>Page Not Found</h3>
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li>-</li>
+            <li>404 Page</li>
+          </ul>
+        </div><!-- container -->
+      </div><!-- overlay -->
+    </section><!-- page header -->
+    <!-- Page Header End here -->
+
+    <!-- Error Page Start here -->
+    <section class="error-page padding-120">
+      <div class="container">
+        <div class="error-content">
+          <h2>404</h2>
+          <h4><span>Oops,</span>ce Quiz est sous maintenance</h4>
+          <p>nous sommes désolés pour la gêne occasionnée :(</p>
+          <h:form>
+          <h:commandButton action="/FrontPages/Quiz/QuizFront?faces-redirect=true" value="choisir un autre Quiz" styleClass="button-default"/>
+       	  </h:form>
+        </div><!-- error content -->
+      </div><!-- container -->
+    </section>
+  	<!-- Error Page End here -->
+
+	</ui:define>
+    		
+</ui:composition>	

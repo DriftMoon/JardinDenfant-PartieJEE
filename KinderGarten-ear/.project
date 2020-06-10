@@ -3,6 +3,7 @@
 	<name>KinderGarten-ear</name>
 	<comment></comment>
 	<projects>
+		<project>primefaces-8.0</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

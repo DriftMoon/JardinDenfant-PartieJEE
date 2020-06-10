@@ -52,6 +52,11 @@
             <artifactId>KinderGarten-ejb</artifactId>
             <type>ejb</type>
         </dependency>
+        <dependency>
+   		 <groupId>org.primefaces</groupId>
+  	     <artifactId>primefaces</artifactId>
+   		 <version>8.0</version>
+		</dependency>
     </dependencies>
 
     <build>

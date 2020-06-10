@@ -1,89 +1,66 @@
 <ui:composition 
-	xmlns="http://www.w3.org/1999/xhtml" 
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui"
 	template="/Front/Layout.xhtml">
 
 
 	<ui:define name="page"> Formations </ui:define>
-	<ui:define name="content">
-<h3>Formations</h3>
-		<h:form>
-			<h:commandButton action="/FrontPages/Formation/create?faces-redirect=true" value="Create New" styleClass="btn btn-info"/>
-		</h:form>
-  <table class="table">
-								
-			<h:form id="form">
-				<h:panelGroup>
-				
-			<h:dataTable value="#{formationBean.formation}" var="e"
-				 class="table">
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Name" />
-					</f:facet>
-					<h:outputText value="#{e.title}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Description" />
-					</f:facet>
-					<h:outputText value="#{e.description}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Theme" />
-					</f:facet>
-					<h:outputText value="#{e.theme}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Location" />
-					</f:facet>
-					<h:outputText value="#{e.location}" />
-				</h:column>
-				
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Start Date" />
-					</f:facet>
-					<h:outputText value="#{e.start}" >
-					<f:convertDateTime pattern="dd-MM-yyyy hh:mm:ss"/> </h:outputText> 
-					 
-				</h:column>
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="End Date" />
-					</f:facet>
-					<h:outputText value="#{e.end}"  >
-					<f:convertDateTime pattern="dd-MM-yyyy hh:mm:ss"/> </h:outputText> 
-				</h:column>
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Price" />
-					</f:facet>
-					<h:outputText value="#{e.price}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Action" />
-					</f:facet>
-					<h:commandButton action="#{formationBean.supprimer(e)}"
-						value="Delete" /> |
-					<h:commandButton action="#{formationBean.modifier(e)}"
-						value="Update" />						
-				</h:column>
-			</h:dataTable>
+    	
+    	
+    		<ui:define name="content">
+<!-- 	<h:form> -->
+	<section class="event event-two padding-120">
+    <div class="container">
+        <div class="event-items">
+            <div class="row">
+            <c:forEach items="#{formationBean.formation}" var="e" varStatus="metadata">
+		            <div class="col-lg-4 col-sm-6 col-xs-12">
+		    <div class="event-item">
+		        <div class="event-image">
+		            <img src="../../resources/Front/images/event/event_01.jpg" alt="event image" class="img-responsive" ></img>
+		            <div class="date">
+		                <span><h:outputText value="#{e.start}">
+												<f:convertDateTime pattern=" MM " /> 
+												</h:outputText>.</span>
+		                <p><h:outputText value="#{e.start}">
+												<f:convertDateTime pattern=" dd " /> 
+												</h:outputText></p>
+		            </div>
+		        </div>
+		        <div class="event-content">
+		            <h4><h:outputText value="#{e.title}" /></h4>
+		            <ul>
+		                <li><span><i class="fa fa-clock-o" aria-hidden="true"></i></span>
+		                	 <h:outputText value="#{e.start}" > 
+ 						<f:convertDateTime pattern="dd-MM-yyyy hh:mm:ss"/> 
+							</h:outputText>  - 
+							<h:outputText value="#{e.end}" > 
+ 						<f:convertDateTime pattern="dd-MM-yyyy hh:mm:ss"/> 
+							</h:outputText></li>
+		                <li><span><i class="fa fa-home" aria-hidden="true"></i></span><h:outputText value="#{e.location}" /></li>
+		                <li><span><i class="fa fa-dollar" aria-hidden="true"></i></span> <h:outputText value="#{e.price}" /> Dt</li>
+		            </ul>
+		            <p style="width:250px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;"><h:outputText value="#{e.description}" /> </p>
+		            <h:form><h:commandButton action="#{formationBean.details(e)}" value="Join Now"  class="button-default"/></h:form>
+		             
+		        </div>
+		   	 </div>
+			</div>
+		</c:forEach>  
 		
-	</h:panelGroup>
-	
-</h:form>
-
-  </table> 
-
-
+            </div>
+        </div>
+    </div>
+</section>
+		
+            
+						
 	</ui:define>
     	
 	

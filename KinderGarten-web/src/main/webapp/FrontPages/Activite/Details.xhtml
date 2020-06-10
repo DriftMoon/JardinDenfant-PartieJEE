@@ -1,0 +1,183 @@
+<ui:composition 
+	xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/Front/Layout.xhtml">
+
+
+	<ui:define name="page"> Courses </ui:define>
+	<ui:define name="content"> 
+	
+			<ui:define name="formations">
+                <li class="nav-item active">
+                		<h:form> <h:commandLink action="Index?faces-redirect=true" styleClass="nav-link"> 
+                            <i class="material-icons">Courses</i>
+                            <p>Courses</p>
+                        </h:commandLink>
+                        </h:form> 
+                </li>
+   		 </ui:define>
+
+
+<!-- Page Header Start here -->
+<section class="page-header section-notch">
+    <div class="overlay">
+        <div class="container">
+            <h3>Class Single Page</h3>
+            <ul>
+                <li>
+                  <h:form>
+<!--                    <h:commandLink action="/Activite/Index?faces-redirect=true" styleClass="nav-link">  -->
+<!--                             <i class="material-icons">Courses</i>                          -->
+<!--                         </h:commandLink> -->
+						<h:commandLink action="/Activite/Index?faces-redirect=true" value="Home" styleClass="nav-link" />
+                        </h:form> 
+                </li>
+                <li>-</li>
+                <li>Class Single</li>
+            </ul>
+        </div><!-- container -->
+    </div><!-- overlay -->
+</section><!-- page header -->
+<!-- Page Header End here -->
+<!-- Blog Post Start here -->
+<section class="singel-class padding-120">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="single-post">
+                    <div class="post-image">
+                        <img src="../../resources/Front/images/banner/banner_03.jpg" alt="post image" class="img-responsive"/>
+                    </div>
+                    <div class="post-content">
+                        <h3><h:outputText value="#{activiteBean.title}"/></h3>
+                        <ul class="post-meta">
+                            <li><span class="icon flaticon-people-1"></span> <a href="#"><h:outputText value="#{activiteBean.professor}"/></a></li>
+                            <li><span class="icon flaticon-like"></span> <a href="#">128 Likes</a></li>
+                            <li><span class="icon flaticon-chat"></span> <a href="#">32 Comments</a></li>
+                        </ul>
+                        <p><h:outputText value="#{activiteBean.description}"/></p>
+                        <blockquote><h:outputText value="#{activiteBean.description}"/></blockquote>
+                        <p>Outils: <h:outputText value="#{activiteBean.outils}"/></p>
+
+                    </div>
+                    <div class="content-bottom">
+                        <ul class="post-tags">
+                            <li><span class="flaticon-tags-outline"></span> Tags :</li>
+                            <li><a href="#">Corporate</a> -</li>
+                            <li><a href="#">KidsAcademy</a> -</li>
+                            <li><a href="#">Agency</a> -</li>
+                            <li><a href="#">Business</a></li>
+                        </ul>
+                        <ul class="post-share">
+                            <li><span class="flaticon-share"></span> Share :</li>
+                            <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa fa-vimeo" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+                        </ul>
+                    </div><!-- content-bottom -->
+                </div><!-- single post -->
+            </div>
+            <div class="col-lg-4">
+                <div class="sidebar">
+                    <div class="sidebar-item">
+                        <form>
+                            <input type="text" name="text" placeholder="Search Your Catagorie..."/>
+                            <button><i class="fa fa-search" aria-hidden="true"></i></button>
+                        </form>
+                    </div><!-- sidebar item -->
+                    <div class="sidebar-item">
+                        <ul class="class-details">
+                            <li>
+                                <div class="name"><i class="flaticon-pencil"></i>Start Date</div>
+                                <div class="info"><h:outputText value="#{activiteBean.start}">
+										<f:convertDateTime pattern = "dd/MM/yyyy"/>
+									</h:outputText></div>
+                            </li>
+                            <li>
+                                <div class="name"><i class="flaticon-student"></i>Years Old</div>
+                                <div class="info"><h:outputText value="#{activiteBean.ageMin}"/>-<h:outputText value="#{activiteBean.ageMax}"/> Years</div>
+                            </li>
+                            <li>
+                                <div class="name"><i class="flaticon-symbols"></i>Class Size</div>
+                                <div class="info"><h:outputText value="#{activiteBean.classSize}"/> Kids</div>
+                            </li>
+                            <li>
+                                <div class="name"><i class="flaticon-school-bus"></i>Carry Time</div>
+                                <div class="info">5 Hours/6 Days</div>
+                            </li>
+                            <li>
+                                <div class="name"><i class="flaticon-book"></i>Coures Duration</div>
+                                <div class="info"><h:outputText value="#{activiteBean.duration}"/> Month</div>
+                            </li>
+                            <li>
+                                <div class="name"><i class="flaticon-alarm-clock"></i>Class Time</div>
+                                <div class="info">9:30am-5:30pm</div>
+                            </li>
+                            <li>
+                                <div class="name"><i class="flaticon-like-2"></i>Rating</div>
+                                <div class="info rating">
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                </div>
+                            </li>
+                       
+                        </ul>
+
+                    </div><!-- sidebar item -->
+                    <div class="sidebar-item">
+                        <h3 class="sidebar-title">Popular Courses</h3>
+                        <h:form id="form">
+                       <c:forEach items="#{activiteBean.activite}" var="e" varStatus="metadata">
+                            <ul class="sidebar-posts">
+                                <li>
+                                    <div class="image">
+                                        <img src="../../resources/Front/images/blog/gallery_01.jpg" alt="post image" class="img-responsive"/>
+                                    </div>
+                                    <div class="content">
+                                        <h:commandLink action="#{activiteBean.details(e)}" value="#{e.title}" />
+                                        <span><h:outputText value="#{e.theme}" /></span>
+                                    </div>
+                                    <br />
+                                </li>
+
+                            </ul><!-- sidebar-posts -->
+                        </c:forEach>
+                        </h:form>
+                    </div><!-- sidebar item -->
+                    <div class="sidebar-item">
+                        <h3 class="sidebar-title">Photos Gallery</h3>
+
+                        <ul class="sidebar-gallery">
+                            <li><a href="#"><img src="../../resources/Front/images/blog/gallery_01.jpg" alt="gallery image" class="img-responsive"/></a></li>
+                            <li><a href="#"><img src="../../resources/Front/images/blog/gallery_02.jpg" alt="gallery image" class="img-responsive"/></a></li>
+                            <li><a href="#"><img src="../../resources/Front/images/blog/gallery_03.jpg" alt="gallery image" class="img-responsive"/></a></li>
+                            <li><a href="#"><img src="../../resources/Front/images/blog/gallery_04.jpg" alt="gallery image" class="img-responsive"/></a></li>
+                            <li><a href="#"><img src="../../resources/Front/images/blog/gallery_05.jpg" alt="gallery image" class="img-responsive"/></a></li>
+                            <li><a href="#"><img src="../../resources/Front/images/blog/gallery_06.jpg" alt="gallery image" class="img-responsive"/></a></li>
+                            <li><a href="#"><img src="../../resources/Front/images/blog/gallery_07.jpg" alt="gallery image" class="img-responsive"/></a></li>
+                            <li><a href="#"><img src="../../resources/Front/images/blog/gallery_08.jpg" alt="gallery image" class="img-responsive"/></a></li>
+                        </ul><!-- sidebar-gallery -->
+                    </div><!-- sidebar item -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+	</ui:define>
+    	
+	
+</ui:composition>

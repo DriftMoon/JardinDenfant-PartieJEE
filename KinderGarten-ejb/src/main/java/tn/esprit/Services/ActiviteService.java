@@ -42,7 +42,7 @@ public class ActiviteService  implements ActiviteServiceRemote{
     	Client client = ClientBuilder.newClient();
     	
     //	RestClientFactory restClientFactory = new RestClientFactory();
-		WebTarget webTarget = client.target("http://localhost:44389/api/ActiviteWebApi"); 
+		WebTarget webTarget = client.target("https://solutionweb220200609033335.azurewebsites.net/api/ActiviteWebApi"); 
     	//URL myURL = new URL("https://localhost:44389/Formation/GetFormations");
     	//WebTarget webTarget = restClientFactory.buildUnsecureWebTarget(myURL);
     	Response response = webTarget.request().get();
@@ -61,7 +61,7 @@ public class ActiviteService  implements ActiviteServiceRemote{
     	 //String dateString;
        	 m.setActiviteID(object.getJsonObject(i).getInt("ActiviteID")); 
     	 m.setTitle(object.getJsonObject(i).getString("Title")); 
-    	 m.setAffiche(object.getJsonObject(i).getString("Affiche")); 
+    //	 m.setAffiche(object.getJsonObject(i).getString("Affiche")); 
     	 m.setTheme(object.getJsonObject(i).getString("Theme")); 
     	 m.setLocation(object.getJsonObject(i).getString("Location"));
     	// m.setStart(DateParser.parseMsTimestampToDate(object.getJsonObject(i).getString("Start")));
@@ -104,7 +104,7 @@ public class ActiviteService  implements ActiviteServiceRemote{
 	@Override
 	public void Delete(Activite Activite) {
 		Client cl = ClientBuilder.newClient();
-		WebTarget target = cl.target("http://localhost:44389/api/ActiviteWebapi/"+Activite.getActiviteID()); 
+		WebTarget target = cl.target("https://solutionweb220200609033335.azurewebsites.net/api/ActiviteWebapi/"+Activite.getActiviteID()); 
 		//WebTarget hello = target.path("");     	
     	Response res=(Response) target.request().delete();	
     	System.out.println(res);
@@ -114,7 +114,7 @@ public class ActiviteService  implements ActiviteServiceRemote{
 	public void Create(Activite f) {
 		
 		Client client = ClientBuilder.newClient();
-		WebTarget target = client.target("http://localhost:44389/api/ActiviteWebApi");
+		WebTarget target = client.target("https://solutionweb220200609033335.azurewebsites.net/api/ActiviteWebApi");
 		WebTarget hello =target.path("");
 		
 		Response response =hello.request().post(Entity.entity(f, MediaType.APPLICATION_JSON) );		
@@ -156,7 +156,7 @@ public class ActiviteService  implements ActiviteServiceRemote{
   		System.out.println("OK");
   		System.out.println(f.toString());
 		Client client = ClientBuilder.newClient();
-		WebTarget target = client.target("http://localhost:44389/api/ActiviteWebApi");
+		WebTarget target = client.target("https://solutionweb220200609033335.azurewebsites.net/api/ActiviteWebApi");
 		WebTarget hello =target.path("");
 		Response response = hello.request().put(Entity.entity(f, MediaType.APPLICATION_JSON));
 		   System.out.println(response);

@@ -1,0 +1,169 @@
+<ui:composition 
+	xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/Front/Layout.xhtml">
+
+
+	<ui:define name="page"> Courses </ui:define>
+	<ui:define name="content"> 
+	
+			
+
+<!-- Page Header Start here -->
+<section class="page-header section-notch">
+    <div class="overlay">
+        <div class="container">
+            <h3>Formation Single Page</h3>
+            <ul>
+                <li>
+                  <h:form> 
+                   <h:commandLink action="/Formation/Index?faces-redirect=true" value="Home"  styleClass="nav-link" />
+<!--                   <h:commandLink action="/Formation/Index?faces-redirect=true" styleClass="nav-link">  -->
+<!--                             <i class="material-icons">Formations</i>                          -->
+<!--                         </h:commandLink> -->
+                        </h:form> 
+                </li>
+                <li>-</li>
+                <li>Formation Single</li>
+            </ul>
+        </div><!-- container -->
+    </div><!-- overlay -->
+</section><!-- page header -->
+<!-- Page Header End here -->
+<!-- Blog Post Start here -->
+<section class="singel-class event-single padding-120">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="single-post">
+                    <div class="post-image">
+                        <img src="../../resources/Front/images/banner/banner_05.jpg" alt="post image" class="img-responsive"/>
+                          <div class="event-counter">
+                            <div class="row">
+                                <div class="col-md-6 col-xs-12">
+                                    <h4><h:outputText value="#{formationBean.title}"/></h4>
+                                </div>
+                                <div class="col-md-6 col-xs-12">
+                                    <ul id="countdown" class="countdown">
+                                        <li class="clock-item"><span class="count-number days">00</span><p class="days_text count-text">Days</p></li>
+
+                                        <li class="clock-item"><span class="count-number hours">00</span><p class="hours_text count-text">Hours</p></li>
+
+                                        <li class="clock-item"><span class="count-number minutes">00</span><p class="minutes_text count-text">Min</p></li>
+
+                                        <li class="clock-item"><span class="count-number seconds">00</span><p class="seconds_text count-text">Sec</p></li>
+                                    </ul>
+                                </div>
+                            </div><!-- row -->
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <h3><h:outputText value="#{formationBean.title}"/></h3>
+                        <ul class="post-meta">
+                            <li><span class="icon flaticon-signs"></span> <a href="#"><h:outputText value="#{formationBean.location}"/></a></li>
+                            <li><span class="icon  flaticon-alarm-clock"></span> <a href="#"><h:outputText id="ddd" value="#{formationBean.start}" > 
+ 						<f:convertDateTime pattern="MM/dd/yyyy hh:mm:ss"/> 
+							</h:outputText> </a></li>
+                        </ul>
+                        <p><h:outputText value="#{formationBean.description}"/></p>
+                        <p>Theme: <h:outputText value="#{formationBean.theme}"/></p>
+						
+                    </div>
+                      <div class="event-map" id="map-canvas"></div>
+                    <div class="content-bottom">
+                        <ul class="post-tags">
+                            <li><span class="flaticon-tags-outline"></span> Tags :</li>
+                            <li><a href="#">Corporate</a> -</li>
+                            <li><a href="#">KidsAcademy</a> -</li>
+                            <li><a href="#">Agency</a> -</li>
+                            <li><a href="#">Business</a></li>
+                        </ul>
+                        <ul class="post-share">
+                            <li><span class="flaticon-share"></span> Share :</li>
+                            <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa fa-vimeo" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+                        </ul>
+                    </div><!-- content-bottom -->
+                </div><!-- single post -->
+            </div>
+            <div class="col-lg-4">
+                <div class="sidebar">
+                    <div class="sidebar-item">
+                        <form>
+                            <input type="text" name="text" placeholder="Search Your Catagorie..."/>
+                            <button><i class="fa fa-search" aria-hidden="true"></i></button>
+                        </form>
+                    </div><!-- sidebar item -->
+                    <!-- sidebar item -->
+                    <div class="sidebar-item">
+                        <h3 class="sidebar-title">Popular Courses</h3>
+                        <h:form id="form">
+                       <c:forEach items="#{activiteBean.sortedActs}" var="e" varStatus="metadata">
+                            <ul class="sidebar-posts">
+                                <li>
+                                    <div class="image">
+                                        <img src="../../resources/Front/images/blog/gallery_01.jpg" alt="post image" class="img-responsive"/>
+                                    </div>
+                                    <div class="content">
+                                        <h:commandLink action="#{activiteBean.details2(e)}" value="#{e.title}" />
+                                        <span><h:outputText value="#{e.theme}" /></span>
+                                    </div>
+                                    <br />
+                                </li>
+
+                            </ul><!-- sidebar-posts -->
+                        </c:forEach>
+                        </h:form>
+                    </div><!-- sidebar item -->
+                    <div class="sidebar-item">
+                        <h3 class="sidebar-title">Photos Gallery</h3>
+
+                        <ul class="sidebar-gallery">
+                            <li><a href="#"><img src="../../resources/Front/images/blog/gallery_01.jpg" alt="gallery image" class="img-responsive"/></a></li>
+                            <li><a href="#"><img src="../../resources/Front/images/blog/gallery_02.jpg" alt="gallery image" class="img-responsive"/></a></li>
+                            <li><a href="#"><img src="../../resources/Front/images/blog/gallery_03.jpg" alt="gallery image" class="img-responsive"/></a></li>
+                            <li><a href="#"><img src="../../resources/Front/images/blog/gallery_04.jpg" alt="gallery image" class="img-responsive"/></a></li>
+                            <li><a href="#"><img src="../../resources/Front/images/blog/gallery_05.jpg" alt="gallery image" class="img-responsive"/></a></li>
+                            <li><a href="#"><img src="../../resources/Front/images/blog/gallery_06.jpg" alt="gallery image" class="img-responsive"/></a></li>
+                            <li><a href="#"><img src="../../resources/Front/images/blog/gallery_07.jpg" alt="gallery image" class="img-responsive"/></a></li>
+                            <li><a href="#"><img src="../../resources/Front/images/blog/gallery_08.jpg" alt="gallery image" class="img-responsive"/></a></li>
+                        </ul><!-- sidebar-gallery -->
+                    </div><!-- sidebar item -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+	<script src="../../resources/Front/assets/js/coundown.js"></script>
+	<script type="text/javascript">
+	//  var next = document.getElementById('ddd').val();
+	var nextyear = '#{formationBean.parseddate}';  
+	//var nextyearr =new date(next).getTime();
+    //   var nextyear = '06/12/2020 12:00:00';
+    // var nextyear = 06 + '/' +  12 + '/' +  2020 + ' 10:00:00';
+  //  var nextyear = new Date(#{formationBean.start});
+   // var nextyear = moment(nextyear).format("MM/DD/YYYY HH:mm:ss");
+  //  var nextyear = $('#ddd').val();
+  //  var nextyear = moment($('#ddd').val(), "MM/DD/YYYY HH:mm:ss").toDate();
+        //countdwon
+        $('#countdown').countdown({
+            date: nextyear,
+            offset: +2,
+            day: 'Day',
+            days: 'Days'
+        });
+    </script>
+	</ui:define>
+    	
+	
+</ui:composition>

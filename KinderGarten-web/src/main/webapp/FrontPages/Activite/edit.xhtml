@@ -7,7 +7,7 @@
 	template="/Front/Layout.xhtml">
 
 
-	<ui:define name="page"> Formations </ui:define>
+	<ui:define name="page"> Courses </ui:define>
 	<ui:define name="content"> 
 	
 			<ui:define name="formations">
@@ -28,30 +28,37 @@
 						<h4 class="card-title">Update your Course</h4>
 					
 					</div>
-					<h:form>
+				<h:form>
+				<h:messages globalOnly="true" />
 					<div class="card-body">
 						
 						<div class="row">
 							<div class="col-md-6">
 								<div class="form-group">
 									<label class="bmd-label-floating">Title</label>
-									<h:inputText value="#{activiteBean.title}" pt:placeholder="titre"  styleClass="form-control" />
+									<h:inputText id="titre" value="#{activiteBean.title}" pt:placeholder="titre"  styleClass="form-control" required="true" 
+             						    requiredMessage="La saisie du titre est obligatoire !"/>
+             						      <h:message for="titre" styleClass="errorBlock" />
+  										  <br/>
 								</div>
 							</div>
 						</div>
-						<div class="row">
-							<div class="col-md-6">
-								<div>
-									<label class="bmd-label-floating">Affiche</label>
-									<h:inputText value="#{activiteBean.affiche}" pt:placeholder="Picture"  styleClass="form-control" />
-								</div>
-							</div>
-						</div>
+<!-- 						<div class="row"> -->
+<!-- 							<div class="col-md-6"> -->
+<!-- 								<div> -->
+<!-- 									<label class="bmd-label-floating">Affiche</label> -->
+<!-- 									<h:inputText value="#{activiteBean.affiche}" pt:placeholder="Picture"  styleClass="form-control" /> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
 						<div class="row">
 							<div class="col-md-6">
 								<div class="form-group">
 									<label class="bmd-label-floating">Theme</label>
-									<h:inputText value="#{activiteBean.theme}" pt:placeholder="Theme"  styleClass="form-control" />
+									<h:inputText id="theme" value="#{activiteBean.theme}" pt:placeholder="Theme"  styleClass="form-control" required="true" 
+             						    requiredMessage="La saisie du Theme est obligatoire !"/>
+             						      <h:message for="theme" styleClass="errorBlock" />
+  										  <br/>
 								</div>
 							</div>
 						</div>
@@ -59,7 +66,10 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<label class="bmd-label-floating">Location</label>
-									<h:inputText value="#{activiteBean.location}" pt:placeholder="Location"  styleClass="form-control" />
+									<h:inputText id="location" value="#{activiteBean.location}" pt:placeholder="Location"  styleClass="form-control" required="true" 
+             						    requiredMessage="La saisie de la Location est obligatoire !"/>
+             						      <h:message for="location" styleClass="errorBlock" />
+  										  <br/>
 								</div>
 							</div>
 						</div>
@@ -67,18 +77,23 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<label class="bmd-label-floating">Start Date </label>
-									<h:inputText value="#{activiteBean.start}"    styleClass="form-control" >
-										<f:convertDateTime pattern = "yyyy-MM-dd'T'HH:mm:ss" />
+									<h:inputText id="start" value="#{activiteBean.start}"  pt:placeholder="format: yyyy/MM/dd"  styleClass="form-control" required="true" 
+             						    requiredMessage="respectez le format yyyy/MM/dd !">
+										<f:convertDateTime pattern = "yyyy/MM/dd" />
 									</h:inputText>
-								</div>
+									      <h:message for = "start" style = "color:red" />
+										</div>
 							</div>
 						</div>
-					
+					    
 						<div class="row">
 							<div class="col-md-6">
 								<div class="form-group">
 									<label class="bmd-label-floating">Class Size</label>
-									<h:inputText value="#{activiteBean.classSize}" pt:placeholder="class size"  styleClass="form-control" />
+									<h:inputText id="classSize" value="#{activiteBean.classSize}" pt:placeholder="class size"  styleClass="form-control" required="true" 
+             						    requiredMessage="La saisie de la taille max est obligatoire !" converterMessage="Please enter digits only."/>
+             						      <h:message for="classSize" styleClass="errorBlock" />
+  										  <br/>
 								</div>
 							</div>
 						</div>
@@ -86,7 +101,10 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<label class="bmd-label-floating">Professor</label>
-									<h:inputText value="#{activiteBean.professor}" pt:placeholder="Professor name"  styleClass="form-control" />
+									<h:inputText id="professor" value="#{activiteBean.professor}" pt:placeholder="Professor name"  styleClass="form-control" required="true" 
+             						    requiredMessage="La saisie du professeur est obligatoire !"/>
+             						      <h:message for="professor" styleClass="errorBlock" />
+  										  <br/>
 								</div>
 							</div>
 						</div>
@@ -94,7 +112,10 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<label class="bmd-label-floating">Description</label>
-									<h:inputText value="#{activiteBean.description}" pt:placeholder="description"  styleClass="form-control" />
+									<h:inputText id="description" value="#{activiteBean.description}" pt:placeholder="description"  styleClass="form-control" required="true" 
+             						    requiredMessage="La saisie de la description est obligatoire !"/>
+             						      <h:message for="description" styleClass="errorBlock" />
+  										  <br/>
 								</div>
 							</div>
 						</div>
@@ -103,7 +124,10 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<label class="bmd-label-floating">Age Min</label>
-									<h:inputText value="#{activiteBean.ageMin}" pt:placeholder="class size"  styleClass="form-control" />
+									<h:inputText id="ageMin" value="#{activiteBean.ageMin}" pt:placeholder="class size"  styleClass="form-control" required="true" 
+             						    requiredMessage="La saisie de l'age min est obligatoire !" converterMessage="Please enter digits only."/>
+             						      <h:message for="ageMin" styleClass="errorBlock" />
+  										  <br/>
 								</div>
 							</div>
 						</div>
@@ -111,7 +135,10 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<label class="bmd-label-floating">Age Max</label>
-									<h:inputText value="#{activiteBean.ageMax}" pt:placeholder="class size"  styleClass="form-control" />
+									<h:inputText id="ageMax" value="#{activiteBean.ageMax}" pt:placeholder="class size"  styleClass="form-control" required="true" 
+             						    requiredMessage="La saisie de l'age max est obligatoire !" converterMessage="Please enter digits only."/>
+             						      <h:message for="ageMax" styleClass="errorBlock" />
+  										  <br/>
 								</div>
 							</div>
 						</div>
@@ -120,22 +147,28 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<label class="bmd-label-floating">Duration</label>
-									<h:inputText value="#{activiteBean.duration}" pt:placeholder="Course Duration"  styleClass="form-control" />
+									<h:inputText id="Duration" value="#{activiteBean.duration}" pt:placeholder="Course Duration"  styleClass="form-control" required="true" 
+             						    requiredMessage="La saisie de la durée du cours est obligatoire !" converterMessage="Please enter digits only."/>
+             						      <h:message for="Duration" styleClass="errorBlock" />
+  										  <br/>
 								</div>
 							</div>
 						</div>
 											
+						
 						<div class="row">
 							<div class="col-md-6">
 								<div class="form-group">
 									<label class="bmd-label-floating">Outils</label>
-									<h:inputText value="#{activiteBean.outils}" pt:placeholder="class outils"  styleClass="form-control" />
+									<h:inputText id="Outils" value="#{activiteBean.outils}" pt:placeholder="class outils"  styleClass="form-control" required="true" 
+             						    requiredMessage="La saisie des outils est obligatoire !" />
+             						    <h:message for="Outils" styleClass="errorBlock" />
+  										  <br/>
 								</div>
 							</div>
 						</div>
 						
-						
-						<div class="row pull-right">
+						<div class="row pull-left">
 						<h:commandButton  value="Update" action="#{activiteBean.MAJEvent()}" class="btn btn-primary btn-round" />
 							<div class="clearfix"></div>
 						</div>

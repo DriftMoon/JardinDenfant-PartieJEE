@@ -33,13 +33,13 @@ import tn.esprit.Interfaces.FormationServiceRemote;
 public class FormationService  implements FormationServiceRemote{
 
 	@Override
-	public List<Formation> GetAll()  {
+	public List<Formation> GetAll() {
 		
 		List<Formation>  lasp = new ArrayList<Formation>();
     	Client client = ClientBuilder.newClient();
     	
     //	RestClientFactory restClientFactory = new RestClientFactory();
-		WebTarget webTarget = client.target("http://localhost:44389/Formation/GetFormations"); 
+		WebTarget webTarget = client.target("https://solutionweb220200609033335.azurewebsites.net/Formation/GetFormations"); 
     	//URL myURL = new URL("https://localhost:44389/Formation/GetFormations");
     	//WebTarget webTarget = restClientFactory.buildUnsecureWebTarget(myURL);
     	Response response = webTarget.request().get();
@@ -56,9 +56,10 @@ public class FormationService  implements FormationServiceRemote{
     	 
     		Formation m = new Formation();
     	 //String dateString;
+    		
        	 m.setFormationID(object.getJsonObject(i).getInt("FormationID")); 
     	 m.setTitle(object.getJsonObject(i).getString("Title")); 
-    	 m.setAffiche(object.getJsonObject(i).getString("Affiche")); 
+    	 //m.setAffiche(object.getJsonObject(i).getString("Affiche")); 
     	 m.setTheme(object.getJsonObject(i).getString("Theme")); 
     	 m.setLocation(object.getJsonObject(i).getString("Location"));
     	 m.setStart(DateParser.parseMsTimestampToDate(object.getJsonObject(i).getString("Start")));
@@ -89,7 +90,7 @@ public class FormationService  implements FormationServiceRemote{
 	@Override
 	public void Delete(Formation Formation) {
 		Client cl = ClientBuilder.newClient();
-		WebTarget target = cl.target("http://localhost:44389/api/Formationwebapi/"+Formation.getFormationID()); 
+		WebTarget target = cl.target("https://solutionweb220200609033335.azurewebsites.net/api/Formationwebapi/"+Formation.getFormationID()); 
 		//WebTarget hello = target.path("");     	
     	Response res=(Response) target.request().delete();	
     	System.out.println(res);
@@ -99,7 +100,7 @@ public class FormationService  implements FormationServiceRemote{
 	public void Create(Formation f) {
 		
 		Client client = ClientBuilder.newClient();
-		WebTarget target = client.target("http://localhost:44389/api/FormationPost");
+		WebTarget target = client.target("https://solutionweb220200609033335.azurewebsites.net/api/FormationPost");
 		WebTarget hello =target.path("");
 		
 		Response response =hello.request().post(Entity.entity(f, MediaType.APPLICATION_JSON) );		
@@ -116,7 +117,7 @@ public class FormationService  implements FormationServiceRemote{
 		Formation f = new Formation();
 		f.setFormationID(id);
 		f.setTitle(e.getTitle());
-		f.setAffiche(e.getAffiche());
+		//f.setAffiche(e.getAffiche());
 		f.setTheme(e.getTheme());
 		f.setLocation(e.getLocation());
 		f.setStart(e.getStart());
@@ -139,7 +140,7 @@ public class FormationService  implements FormationServiceRemote{
   		System.out.println("OK");
   		System.out.println(f.toString());
 		Client client = ClientBuilder.newClient();
-		WebTarget target = client.target("http://localhost:44389/api/Formationwebapi");
+		WebTarget target = client.target("https://solutionweb220200609033335.azurewebsites.net/api/Formationwebapi");
 		WebTarget hello =target.path("");
 		Response response = hello.request().put(Entity.entity(f, MediaType.APPLICATION_JSON));
 		   System.out.println(response);

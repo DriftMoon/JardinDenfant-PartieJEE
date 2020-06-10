@@ -13,18 +13,18 @@
 		<h:form>
 			<h:commandButton action="/FrontPages/Quiz/create?faces-redirect=true" value="Create New" styleClass="btn btn-info"/>
 		</h:form>
+		
+		<div role="alert" class="message critical">
+					 <p><b><img src="msg-err.png"/> NB, vous serez peut ètre rediriger !</b></p>
+					 <p>le Quiz doit comporter au moins 2 questions</p>
+					 </div>
   <table class="table">  								
 			<h:form id="form">
 				<h:panelGroup>
 				
 			<h:dataTable value="#{quizBean.quizz}" var="e"
 				 class="table">
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="id" />
-					</f:facet>
-					<h:outputText value="#{e.ID}" />
-				</h:column>
+			
 				<h:column>
 					<f:facet name="header">
 						<h:outputText value="titre" />
@@ -39,7 +39,9 @@
 					<h:commandButton action="#{quizBean.test(e)}"
 						value="Play" /> |
 					<h:commandButton action="#{quizBean.modifier(e)}"
-						value="Update" />						
+						value="Ajouter Question" />|
+					<h:commandButton action="#{quizBean.supprimer(e)}"
+						value="supprimer" />						
 				</h:column>
 			</h:dataTable>
 		

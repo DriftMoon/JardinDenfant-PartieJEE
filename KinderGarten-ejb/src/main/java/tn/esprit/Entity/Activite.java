@@ -24,10 +24,7 @@ public class Activite implements Serializable {
     public Date Start ;
     public String Professor ;
     public String UserId ;
-	
-    
-    
-	
+		
 	
 	public Activite() {
 		super();

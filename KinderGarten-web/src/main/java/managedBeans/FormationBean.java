@@ -1,11 +1,16 @@
 package managedBeans;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 
+import tn.esprit.Entity.Activite;
 import tn.esprit.Entity.Formation;
 import tn.esprit.Services.FormationService;
 @ManagedBean
@@ -24,7 +29,9 @@ public class FormationBean {
     private String Location ;
     private String Affiche ;
     private String UserId ;
-	
+    protected static final SimpleDateFormat dateHeureFormat = 
+    		  new SimpleDateFormat("MM/dd/yyyy hh:mm:ss");
+	private String parseddate;
     private List<Formation> Formation;
     
     FormationService fs= new FormationService();
@@ -57,14 +64,70 @@ public String modifier(Formation e) throws IOException{
 
 public String MAJEvent(){
 	System.out.println(id);
+	
+	if(Start.after(End))
+	{
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
+		        FacesMessage.SEVERITY_ERROR, "Vérifier la date debut et date fin!", null));
+		return "edit.jsf";}
+	
+	if(NbrMax >150|| NbrMax<1)
+	{
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
+		        FacesMessage.SEVERITY_ERROR, "Vérifier le min est le max", null));
+		return "edit.jsf";}
+	
+	if( Price >1500 || Price <0)
+	{
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
+		        FacesMessage.SEVERITY_ERROR, "Vérifier le prix ! ", null));
+		return "edit.jsf";}
+	
 	fs.Update(id,new Formation( Title, Description, Start, End, Theme, false, NbrMax, Reserved, Price, Location, Affiche, UserId) );
 	Formation = fs.GetAll();
 	id=0;
 	return "Index.jsf";
 }
 
+public String details(Formation e) throws IOException{
+	this.setFormationID(e.getFormationID());
+	this.setTitle(e.getTitle());
+	this.setAffiche(e.getAffiche());
+	this.setTheme(e.getTheme());
+	this.setLocation(e.getLocation());
+	this.setStart(e.getStart());
+	this.setEnd(e.getEnd());
+	this.setDescription(e.getDescription());
+	this.setNbrMax(e.getNbrMax());
+	this.setPrice(e.getPrice());
+	this.setUserId(e.getUserId());
+	this.setParseddate(dateHeureFormat.format(e.getStart()));
+	System.out.println(this.parseddate);
+	System.out.println(e.getFormationID());
+	id=e.getFormationID();
+	System.out.println(id);
+	return "Details.jsf";			
+}
+
 
 public	String AddFormation() {
+	if(Start.after(End))
+	{
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
+		        FacesMessage.SEVERITY_ERROR, "Vérifier la date debut et date fin!", null));
+		return "create.jsf";}
+	
+	if(NbrMax >150|| NbrMax<1)
+	{
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
+		        FacesMessage.SEVERITY_ERROR, "Vérifier le min est le max", null));
+		return "create.jsf";}
+	
+	if( Price >1500 || Price <0)
+	{
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
+		        FacesMessage.SEVERITY_ERROR, "Vérifier le prix ! ", null));
+		return "create.jsf";}
 	
 	fs.Create(new Formation( Title, Description, Start, End, Theme, false, NbrMax, Reserved, Price, Location, Affiche, UserId) );
 	return "Index.jsf";
@@ -73,7 +136,6 @@ public	String AddFormation() {
 public String supprimer(Formation e){
 	fs.Delete(e);
 	return "Index.jsf";
-	
 	
 }
 
@@ -199,6 +261,16 @@ public String supprimer(Formation e){
 
 	public void setFormation(List<Formation> formation) {
 		Formation = formation;
+	}
+
+
+	public String getParseddate() {
+		return parseddate;
+	}
+
+
+	public void setParseddate(String string) {
+		this.parseddate = string;
 	}
     
     

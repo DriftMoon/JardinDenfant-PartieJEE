@@ -73,7 +73,7 @@ public class QuizServices implements QuizServiceRemote{
 
 		List<Quiz>  lasp = new ArrayList<Quiz>();
     	Client client = ClientBuilder.newClient();
-  		WebTarget webTarget = client.target("http://localhost:44389/api/QuizWebApi"); 
+  		WebTarget webTarget = client.target("https://solutionweb220200609033335.azurewebsites.net/api/QuizWebApi"); 
     	Response response = webTarget.request().get();
     	String result = response.readEntity(String.class); 
     	//System.out.println(result);
@@ -94,7 +94,7 @@ public class QuizServices implements QuizServiceRemote{
 	@Override
 	public void Delete(Quiz quiz) {
 		Client cl = ClientBuilder.newClient();
-		WebTarget target = cl.target("http://localhost:44389/api/QuizWebApi/"+quiz.getID()); 
+		WebTarget target = cl.target("https://solutionweb220200609033335.azurewebsites.net/api/QuizWebApi/"+quiz.getID()); 
 		//WebTarget hello = target.path("");     	
     	Response res=(Response) target.request().delete();	
     	System.out.println(res);
@@ -105,7 +105,7 @@ public class QuizServices implements QuizServiceRemote{
 	public void Create(Quiz f) {
 
 		Client client = ClientBuilder.newClient();
-		WebTarget target = client.target("http://localhost:44389/api/QuizWebApi");
+		WebTarget target = client.target("https://solutionweb220200609033335.azurewebsites.net/api/QuizWebApi");
 		WebTarget hello =target.path("");
 		
 		Response response =hello.request().post(Entity.entity(f, MediaType.APPLICATION_JSON) );		
@@ -126,7 +126,7 @@ public class QuizServices implements QuizServiceRemote{
 		System.out.println("OK");
   		System.out.println(f.toString());
 		Client client = ClientBuilder.newClient();
-		WebTarget target = client.target("http://localhost:44389/api/QuizWebApi");
+		WebTarget target = client.target("https://solutionweb220200609033335.azurewebsites.net/api/QuizWebApi");
 		WebTarget hello =target.path("");
 		Response response = hello.request().put(Entity.entity(f, MediaType.APPLICATION_JSON));
 		   System.out.println(response);

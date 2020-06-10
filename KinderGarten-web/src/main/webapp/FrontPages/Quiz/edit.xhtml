@@ -12,9 +12,9 @@
 	
 			<ui:define name="formations">
                 <li class="nav-item active">
-                		<h:form> <h:commandLink action="/Formation/Index?faces-redirect=true" styleClass="nav-link"> 
+                		<h:form> <h:commandLink action="/Quiz/Index?faces-redirect=true" styleClass="nav-link"> 
                             <i class="material-icons">Formations</i>
-                            <p>Formations</p>
+                            <p>Retour</p>
                         </h:commandLink>
                         </h:form> 
                 </li>
@@ -26,24 +26,26 @@
 				<div class="card">
 					<div class="card-header card-header-primary">
 						<h4 class="card-title">Update your quiz</h4>
+						
 					
 					</div>
+					
+		<div role="alert" class="message critical">
+					 <p><b><img src="msg-err.png"/> NB, vous avez été peut ètre redirigé !</b></p>
+					 <p>le Quiz doit comporter au moins 2 questions</p>
+					 </div>
 					<h:form>
 					<div class="card-body">
 						
-						<div class="row">
-							<div class="col-md-6">
-								<div class="form-group">
-									<label class="bmd-label-floating">ID Question</label>
-									<h:inputText value="#{quizBean.questionID}" pt:placeholder="id"  styleClass="form-control" />
-								</div>
-							</div>
-						</div>
+						
 						<div class="row">
 							<div class="col-md-6">
 								<div>
 									<label class="bmd-label-floating">Question Text</label>
-									<h:inputText value="#{quizBean.text}" pt:placeholder="Question"  styleClass="form-control" />
+									<h:inputText id="text" value="#{quizBean.text}" pt:placeholder="Question"  styleClass="form-control" required="true" 
+             						    requiredMessage="La saisie du sujet est obligatoire !"/>
+             						      <h:message for="text" styleClass="errorBlock" />
+  										  <br/>
 								</div>
 							</div>
 						</div>
@@ -51,7 +53,10 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<label class="bmd-label-floating">Option 1</label>
-									<h:inputText value="#{quizBean.opt1}" pt:placeholder="Option 1"  styleClass="form-control" />
+									<h:inputText id="opt1" value="#{quizBean.opt1}" pt:placeholder="Option 1"  styleClass="form-control" required="true" 
+             						    requiredMessage="La saisie des choix est obligatoire !"/>
+             						      <h:message for="opt1" styleClass="errorBlock" />
+  										  <br/>
 								</div>
 							</div>
 						</div>
@@ -59,7 +64,10 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<label class="bmd-label-floating">Option 2</label>
-									<h:inputText value="#{quizBean.opt2}" pt:placeholder="Option 2"  styleClass="form-control" />
+									<h:inputText id="opt2" value="#{quizBean.opt2}" pt:placeholder="Option 2"  styleClass="form-control" required="true" 
+             						    requiredMessage="La saisie des choix est obligatoire !" />
+             						      <h:message for="opt2" styleClass="errorBlock" />
+  										  <br/>
 								</div>
 							</div>
 						</div>
@@ -68,7 +76,10 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<label class="bmd-label-floating">Option 3</label>
-									<h:inputText value="#{quizBean.opt3}" pt:placeholder="Option 3"  styleClass="form-control" />
+									<h:inputText id="opt3" value="#{quizBean.opt3}" pt:placeholder="Option 3"  styleClass="form-control" required="true" 
+             						    requiredMessage="La saisie des choix est obligatoire !"/>
+             						      <h:message for="opt3" styleClass="errorBlock" />
+  										  <br/>
 								</div>
 							</div>
 						</div>
@@ -76,7 +87,10 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<label class="bmd-label-floating">Option 4</label>
-									<h:inputText value="#{quizBean.opt4}" pt:placeholder="Option 4"  styleClass="form-control" />
+									<h:inputText id="opt4" value="#{quizBean.opt4}" pt:placeholder="Option 4"  styleClass="form-control" required="true" 
+             						    requiredMessage="La saisie des choix est obligatoire !"/>
+             						      <h:message for="opt4" styleClass="errorBlock" />
+  										  <br/>
 								</div>
 							</div>
 						</div>
@@ -84,13 +98,16 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<label class="bmd-label-floating">correct option</label>
-									<h:inputText value="#{quizBean.correctOpt}" pt:placeholder="correct option"  styleClass="form-control" />
+									<h:inputText id="correct" value="#{quizBean.correctOpt}" pt:placeholder="correct option 1-4"  styleClass="form-control" required="true" 
+             						    requiredMessage="La saisie de la reponse est obligatoire !"/>
+             						      <h:message for="correct" styleClass="errorBlock" />
+  										  <br/>
 								</div>
 							</div>
 						</div>
 						
 						<div class="row pull-right">
-						<h:commandButton  value="Update" action="#{quizBean.addQuestion()}" class="btn btn-primary btn-round" />
+						<h:commandButton  value="Ajouter" action="#{quizBean.addQuestion()}" class="btn btn-primary btn-round" />
 							<div class="clearfix"></div>
 						</div>
 						
@@ -101,6 +118,5 @@
 			</div>
 
 	</ui:define>
-    	
-	
+  
 </ui:composition>

@@ -43,7 +43,7 @@ public class QuestionService implements QuestionServiceRemote {
 		
 		List<Question>  lasp = new ArrayList<Question>();
     	Client client = ClientBuilder.newClient();
-  		WebTarget webTarget = client.target("http://localhost:44389/api/QuestionWebApi"); 
+  		WebTarget webTarget = client.target("https://solutionweb220200609033335.azurewebsites.net/api/QuestionWebApi"); 
     	Response response = webTarget.request().get();
     	String result = response.readEntity(String.class); 
     	//System.out.println(result);
@@ -70,7 +70,7 @@ public class QuestionService implements QuestionServiceRemote {
 	@Override
 	public void Delete(Question q) {
 		Client cl = ClientBuilder.newClient();
-		WebTarget target = cl.target("http://localhost:44389/api/QuestionWebApi/"+q.getQuestionID()); 
+		WebTarget target = cl.target("https://solutionweb220200609033335.azurewebsites.net/api/QuestionWebApi/"+q.getQuestionID()); 
 		//WebTarget hello = target.path("");     	
     	Response res=(Response) target.request().delete();	
     	System.out.println(res);		
@@ -80,7 +80,7 @@ public class QuestionService implements QuestionServiceRemote {
 	public void Create(Question f) {
 		System.out.println(f);
 		Client client = ClientBuilder.newClient();
-		WebTarget target = client.target("http://localhost:44389/api/QuestionWebApi");
+		WebTarget target = client.target("https://solutionweb220200609033335.azurewebsites.net/api/QuestionWebApi");
 		WebTarget hello =target.path("");		
 		Response response =hello.request().post(Entity.entity(f, MediaType.APPLICATION_JSON) );		
 		String result=response.readEntity(String.class);
@@ -104,7 +104,7 @@ public class QuestionService implements QuestionServiceRemote {
 		System.out.println("OK");
   		System.out.println(q.toString());
 		Client client = ClientBuilder.newClient();
-		WebTarget target = client.target("http://localhost:44389/api/QuestionWebApi");
+		WebTarget target = client.target("https://solutionweb220200609033335.azurewebsites.net/api/QuestionWebApi");
 		WebTarget hello =target.path("");
 		Response response = hello.request().put(Entity.entity(f, MediaType.APPLICATION_JSON));
 		   System.out.println(response);

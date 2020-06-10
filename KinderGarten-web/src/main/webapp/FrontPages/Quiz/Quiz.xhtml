@@ -8,6 +8,9 @@
 	template="/Front/Layout.xhtml">
 	<ui:define name="page"> Quiz </ui:define>
 	<ui:define name="content">
+	<h:form>
+			<h:commandButton action="/FrontPages/Quiz/QuizFront?faces-redirect=true" value="Back to List" styleClass="btn btn-info"/>
+		</h:form>
 	<div id="quiz">
 	  <div id="quiz-header">
 	    <h1><h:outputText value="#{quizBean.titre}"/></h1>
